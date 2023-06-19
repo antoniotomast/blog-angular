@@ -1,1 +1,27 @@
-<p>formulario works!</p>
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label>Título</label>
+        <input type="text" class="form-control" formControlName="titulo">
+    </div>
+    <div class="mb-3">
+        <label>Texto</label>
+        <textarea cols="30" rows="10" class="form-control" formControlName="texto"></textarea>
+    </div>
+    <div class="mb-3">
+        <label>Autor</label>
+        <input type="text" class="form-control" formControlName="autor">
+    </div>
+    <div class="mb-3">
+        <img src="" formControlName="imagen">
+    </div>
+    <div class="mb-3">
+        <label>Fecha</label>
+        <input type="text" class="form-control" formControlName="fecha">
+    </div>
+    <select class="mb-3" name="" value="Elija una categoría" class="form-control" formControlName="categoria">
+        <option value="ciencia">Ciencia</option>
+        <option value="deporte">Deporte</option>
+        <option value="politica">Política</option> class="mb-3"
+    </select>
+    <input type="submit" value="Postear" class="btn btn-success">
+</form>
