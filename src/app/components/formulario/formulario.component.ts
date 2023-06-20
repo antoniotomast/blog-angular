@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ServicioService } from 'src/app/services/servicio.service';
 
 @Component({
   selector: 'app-formulario',
@@ -9,6 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class FormularioComponent {
 
   formulario: FormGroup;
+  blogService = inject(ServicioService);
 
   constructor() {
     this.formulario = new FormGroup({
@@ -37,7 +39,7 @@ export class FormularioComponent {
   }
 
   onSubmit() {
-    console.log(this.formulario.value);
+    const submit = this.blogService.arrPosts.push(this.formulario.value);
   }
 
 }
