@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Post } from 'src/app/interfaces/Post.interface';
 import { ServicioService } from 'src/app/services/servicio.service';
 
 @Component({
@@ -11,6 +12,7 @@ export class FormularioComponent {
 
   formulario: FormGroup;
   blogService = inject(ServicioService);
+
 
   constructor() {
     this.formulario = new FormGroup({
@@ -32,14 +34,17 @@ export class FormularioComponent {
       imagen: new FormControl(null),
       fecha: new FormControl(null, [
         Validators.required,
-        Validators.maxLength(10)
+        Validators.maxLength(10),
+        Validators.pattern(/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/)
       ]),
       categoria: new FormControl(null)
     });
+
+
   }
 
   onSubmit() {
-    const submit = this.blogService.arrPosts.push(this.formulario.value);
+    this.blogService.create(this.formulario.value);
   }
 
 }

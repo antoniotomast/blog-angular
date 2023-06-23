@@ -1,0 +1,11 @@
+ul {
+    display: flex;
+    list-style: none;
+}
+
+li {
+    margin: 10px;
+    border: 1px solid black;
+    background-color: rgb(247, 208, 150);
+    cursor: pointer;
+}

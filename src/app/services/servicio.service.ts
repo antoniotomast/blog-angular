@@ -6,7 +6,7 @@ import { Post } from '../interfaces/Post.interface';
 })
 export class ServicioService {
 
-  arrPosts: Post[];
+  private arrPosts: Post[];
   post: Post;
 
   constructor() {
@@ -41,11 +41,12 @@ export class ServicioService {
   }
 
   getAll(): Post[] {
-    let posts = [];
-    for (let post of this.arrPosts) {
-      posts.push(post);
-    }
-    return posts;
+    return this.arrPosts;
+  }
+
+  create(newPost: Post) {
+    this.arrPosts.push(newPost);
+    console.log(this.arrPosts)
   }
 
   getByCategory(category: string): Post[] {
@@ -56,6 +57,10 @@ export class ServicioService {
       }
     }
     return arrCategory;
+  }
+
+  getByCategory2(category: string): Post[] {
+    return this.arrPosts.filter(post => post.categoria === category);
   }
 
 }

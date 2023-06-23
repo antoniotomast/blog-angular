@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { Post } from 'src/app/interfaces/Post.interface';
 import { ServicioService } from 'src/app/services/servicio.service';
 
 @Component({
@@ -8,9 +9,25 @@ import { ServicioService } from 'src/app/services/servicio.service';
 })
 export class ListaPostsComponent {
 
+  posts: Post[];
+
   //servicios
   blogService = inject(ServicioService);
-  posts = this.blogService.arrPosts;
 
+
+
+  constructor() {
+    this.posts = [];
+  }
+
+
+  ngOnInit() {
+    this.posts = this.blogService.getAll();
+  }
+
+
+  onChange($event: any) {
+    this.posts = this.blogService.getByCategory2($event.target.value);
+  }
 
 }
